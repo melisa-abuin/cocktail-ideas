@@ -1,0 +1,24 @@
+{
+  "env": {
+      "es2021": true,
+      "jest": true
+  },
+  "extends": [
+      "plugin:react/recommended",
+      "plugin:import/typescript",
+      "plugin:@typescript-eslint/recommended"
+  ],
+  "parserOptions": {
+    "sourceType": "module"
+  },
+  "plugins": [
+      "react-hooks",
+      "react",
+      "@typescript-eslint"
+  ],
+  "rules": {
+    "no-use-before-define": "off",
+    "semi": 0,
+    "react/jsx-filename-extension": [1, { "extensions": [".tsx", ".ts"] }]
+  }
+}
