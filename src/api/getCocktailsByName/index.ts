@@ -9,11 +9,11 @@ const apiUrl = "https://www.thecocktaildb.com/api/json/v1/1/search.php"
 export const getCocktailsByName = async (name: string) => {
   const result = await pipe(
     TE.tryCatch(
-      (): Promise<any> => fetch(`${apiUrl}?s=${name}`),
+      () => fetch(`${apiUrl}?s=${name}`),
       handleApiError,
     ),
     TE.chain(response => TE.tryCatch(
-      (): Promise<any> => response.json(),
+      () => response.json(),
       handleApiError,
     )),
   )()
