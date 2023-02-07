@@ -19,6 +19,7 @@
   "rules": {
     "no-use-before-define": "off",
     "semi": 0,
+    "react/react-in-jsx-scope": "off",
     "react/jsx-filename-extension": [1, { "extensions": [".tsx", ".ts"] }]
   }
 }
