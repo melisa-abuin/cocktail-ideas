@@ -9,6 +9,7 @@ application made using React & Typescript that suggests cocktails that can be pr
 - [Styled Components](https://styled-components.com/) as the library for styling the app
 - [Jest](https://jestjs.io/) as the unit tests framework
 - [fp-ts](https://gcanti.github.io/fp-ts/) as the library for typed functional programming in TypeScript
+- [Next](https://nextjs.org/) as the web development framework
 
 ## Design
 

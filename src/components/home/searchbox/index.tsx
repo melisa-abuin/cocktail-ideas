@@ -1,5 +1,5 @@
 import { Addon, Container, Input } from "./styles"
-import { SearchIcon } from "../../../assets/svg/searchicon"
+import { SearchIcon } from "@/src/assets/svg/searchicon"
 
 export const SearchBox = () => {
   return (
