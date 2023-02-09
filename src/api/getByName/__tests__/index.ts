@@ -1,10 +1,10 @@
-import { getCocktailsByName } from '..'
+import { getByName } from '..'
 
 afterEach(() => {
   jest.restoreAllMocks()
 })
 
-describe('getCocktailsByName', () => {
+describe('getByName', () => {
   it('returns the drinks object when api call is successful', async () => {
 
     global.fetch = jest.fn(() =>
@@ -13,7 +13,7 @@ describe('getCocktailsByName', () => {
       }),
     ) as jest.Mock
 
-    const result = await getCocktailsByName('vodka')
+    const result = await getByName({ entity: 'cocktail', name: 'vodka'})
 
     expect(global.fetch).toHaveBeenCalled()
     expect(result).toMatchObject({ drinks: [] })
@@ -25,7 +25,7 @@ describe('getCocktailsByName', () => {
       Promise.reject()
     ) as jest.Mock
 
-    const result = await getCocktailsByName('vodka')
+    const result = await getByName({ entity: 'cocktail', name: 'vodka'})
 
     expect(global.fetch).toHaveBeenCalled()
     expect(result).toBe(null)

@@ -1,15 +1,18 @@
 import { pipe } from "fp-ts/function"
 import * as TE from "fp-ts/TaskEither"
 import * as E from "fp-ts/Either"
+import { handleApiError } from "@/src/utils/handleApiError"
+import { apiUrlFormatter } from "@/src/utils/apiUrlFormatter"
 
-const handleApiError = (reason: unknown) => new Error(`${reason}`)
+type Props = {
+  entity: 'cocktail' | 'ingredient'
+  name: string
+}
 
-const apiUrl = "https://www.thecocktaildb.com/api/json/v1/1/search.php"
-
-export const getCocktailsByName = async (name: string) => {
+export const getByName = async ({entity, name}: Props) => {
   const result = await pipe(
     TE.tryCatch(
-      () => fetch(`${apiUrl}?s=${name}`),
+      () => fetch(apiUrlFormatter({ entity, param: name })),
       handleApiError,
     ),
     TE.chain(response => TE.tryCatch(
