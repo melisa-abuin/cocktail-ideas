@@ -6,6 +6,6 @@ export const Column = styled.div<{ width?: number }>`
   flex-direction: column;
   justify-content: center;
 
-  max-width: ${({ width }) => `${width}px` ?? 'none'};
+  max-width: ${({ width }) => width ? `${width}px` : 'none'};
   width: 100%;
 `
