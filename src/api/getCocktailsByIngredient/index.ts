@@ -3,7 +3,7 @@ import * as TE from "fp-ts/TaskEither"
 import * as E from "fp-ts/Either"
 import { handleApiError } from "@/src/utils/handleApiError"
 import { apiBaseUrl } from "@/src/constants/api"
-import { drinks } from "@/src/types/drinks"
+import { cocktails } from "@/src/types/cocktails"
 import * as t from "io-ts"
 import { failure } from 'io-ts/lib/PathReporter'
 
@@ -26,7 +26,7 @@ export const getCocktailsByIngredient = async (name: string) => {
       () => response.json(),
       handleApiError,
     )),
-    TE.chain(response => decodeWith(drinks)(response.drinks))
+    TE.chain(response => decodeWith(cocktails)(response.drinks))
   )()
 
   if(E.isRight(result)){

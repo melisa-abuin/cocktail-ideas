@@ -3,28 +3,31 @@ import { Column } from "../../section/column"
 import { useRouter } from 'next/router'
 import { useEffect, useState } from "react"
 import { getCocktailsByIngredient } from "@/src/api/getCocktailsByIngredient"
-import { Drinks } from "@/src/types/drinks"
+import { Cocktails } from "@/src/types/cocktails"
+import { Image } from "./Image"
 
 export const Results = () => {
   const router = useRouter()
   const { ingredient } = router.query
-  const [ drinks, setDrinks ] = useState<Drinks | null>([])
+  const [ cocktails, setCocktails ] = useState<Cocktails | null>([])
 
   useEffect(() => {
     const fetchCocktails = async () => {
       const result = await getCocktailsByIngredient(ingredient as string)
 
-      setDrinks(result)
+      setCocktails(result)
     }
 
     fetchCocktails()
   }, [ingredient])
 
   return (
-    <Column>
+    <Column width={700}>
       <Text>Cocktails that you can prepare with "{ingredient}":</Text>
       <Grid>
-        {ingredient}
+        {cocktails?.map((cocktail) => (
+          <Image key={cocktail.idDrink} {...cocktail} />
+        ))}
       </Grid>
     </Column>
   )
