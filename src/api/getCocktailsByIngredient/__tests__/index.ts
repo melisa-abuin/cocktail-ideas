@@ -16,7 +16,7 @@ describe('getCocktailsByIngredient', () => {
     const result = await getCocktailsByIngredient('vodka')
 
     expect(global.fetch).toHaveBeenCalled()
-    expect(result).toMatchObject({ drinks: [] })
+    expect(result).toMatchObject([])
   })
 
   it('returns null when there is an error', async () => {

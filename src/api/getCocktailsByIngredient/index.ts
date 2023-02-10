@@ -19,7 +19,7 @@ export const getCocktailsByIngredient = async (name: string) => {
   )()
 
   if(E.isRight(result)){
-    return result.right
+    return result.right.drinks
   }
 
   return null
