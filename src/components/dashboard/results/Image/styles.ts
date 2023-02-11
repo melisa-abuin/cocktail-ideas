@@ -19,7 +19,7 @@ export const StyledImage = styled.img`
 `
 
 export const Text = styled.p`
-  color: #FFFFFF;
+  color: #ffffff;
   font-size: 14px;
   text-align: center;
   z-index: 1;

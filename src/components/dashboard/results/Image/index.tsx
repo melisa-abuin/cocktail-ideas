@@ -1,5 +1,5 @@
-import { Cocktail } from "@/src/types/cocktails"
-import { Container, StyledImage, Text } from "./styles"
+import { Cocktail } from '@/src/types/cocktails'
+import { Container, StyledImage, Text } from './styles'
 
 export const Image = ({ idDrink, strDrink, strDrinkThumb }: Cocktail) => (
   <Container key={idDrink}>
