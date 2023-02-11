@@ -1,31 +1,34 @@
-import { Container, Grid, Text } from './styles'
-import { Column } from '../../section/column'
-import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
+import { Container, Grid } from './styles'
+import { Text } from '@/src/components/section/text'
+import { Image } from './image'
+import { Loader } from './loader'
 import { getCocktailsByIngredient } from '@/src/api/getCocktailsByIngredient'
-import { Cocktails } from '@/src/types/cocktails'
-import { Image } from './Image'
+import { useQuery } from 'react-query'
 
-export const Results = () => {
-  const router = useRouter()
-  const { ingredient } = router.query
-  const [cocktails, setCocktails] = useState<Cocktails | null>([])
+type Props = {
+  ingredient: string
+}
 
-  useEffect(() => {
-    const fetchCocktails = async () => {
-      const result = await getCocktailsByIngredient(ingredient as string)
+export const Results = ({ ingredient }: Props) => {
+  const { isFetching, data, error } = useQuery('cocktails', () =>
+    getCocktailsByIngredient(ingredient as string)
+  )
 
-      setCocktails(result)
-    }
+  if (isFetching) {
+    return <Loader />
+  }
 
-    fetchCocktails()
-  }, [ingredient])
+  if (error) {
+    return (
+      <Text type="error">Ups, something went wrong! Try again please.</Text>
+    )
+  }
 
   return (
     <Container width={700}>
       <Text>Cocktails that you can prepare with "{ingredient}":</Text>
       <Grid>
-        {cocktails?.map((cocktail) => (
+        {data?.map((cocktail) => (
           <Image key={cocktail.idDrink} {...cocktail} />
         ))}
       </Grid>
