@@ -1,4 +1,4 @@
-import { Grid, Text } from './styles'
+import { Container, Grid, Text } from './styles'
 import { Column } from '../../section/column'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
@@ -22,13 +22,13 @@ export const Results = () => {
   }, [ingredient])
 
   return (
-    <Column width={700}>
+    <Container width={700}>
       <Text>Cocktails that you can prepare with "{ingredient}":</Text>
       <Grid>
         {cocktails?.map((cocktail) => (
           <Image key={cocktail.idDrink} {...cocktail} />
         ))}
       </Grid>
-    </Column>
+    </Container>
   )
 }

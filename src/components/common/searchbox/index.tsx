@@ -1,11 +1,15 @@
 import { Addon, Container, Input } from './styles'
 import { SearchIcon } from '@/src/assets/svg/searchicon'
 
-export const SearchBox = () => {
+type Props = {
+  size?: 'medium' | 'small'
+}
+
+export const SearchBox = ({ size = 'medium' }: Props) => {
   return (
-    <Container>
-      <Input placeholder="Type ingredient" />
-      <Addon>
+    <Container size={size}>
+      <Input inputSize={size} placeholder="Type ingredient" />
+      <Addon size={size}>
         <SearchIcon />
       </Addon>
     </Container>

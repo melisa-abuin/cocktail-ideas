@@ -4,6 +4,6 @@ export const Row = styled.div`
   align-items: center;
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: flex-start;
   width: 100%;
 `

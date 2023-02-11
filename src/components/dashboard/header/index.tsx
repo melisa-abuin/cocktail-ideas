@@ -1,12 +1,12 @@
-import { Container, Title } from './styles'
+import { Container, FixedContainer, Title } from './styles'
 import Image from 'next/image'
 import { Row } from '../../section/row'
 import { SearchBox } from '../../common/searchbox'
 
 export const Header = () => {
   return (
-    <Row>
-      <Container basis={290}>
+    <FixedContainer>
+      <Container basis={180}>
         <Image
           alt="banner"
           height={42}
@@ -16,8 +16,8 @@ export const Header = () => {
         <Title>Cocktails</Title>
       </Container>
       <Container basis={700}>
-        <SearchBox />
+        <SearchBox size="small" />
       </Container>
-    </Row>
+    </FixedContainer>
   )
 }

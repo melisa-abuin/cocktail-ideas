@@ -1,4 +1,9 @@
 import styled from 'styled-components'
+import { Column } from '../../section/column'
+
+export const Container = styled(Column)`
+  padding-top: 8px;
+`
 
 export const Grid = styled.div`
   display: grid;
@@ -10,4 +15,6 @@ export const Grid = styled.div`
 export const Text = styled.p`
   color: #000000;
   font-size: 14px;
+  text-align: start;
+  width: 100%;
 `
