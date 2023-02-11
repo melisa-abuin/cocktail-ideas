@@ -1,4 +1,4 @@
-import { apiBaseUrl } from "@/src/constants/api"
+import { apiBaseUrl } from '@/src/constants/api'
 
 type Props = {
   entity: 'cocktail' | 'ingredient'
@@ -6,10 +6,10 @@ type Props = {
 }
 
 export const apiUrlFormatter = ({ entity, param }: Props) => {
-  switch(entity){
+  switch (entity) {
     case 'cocktail':
       return `${apiBaseUrl}/search.php?s=${param}`
-    case 'cocktail':
+    case 'ingredient':
       return `${apiBaseUrl}/search.php?i=${param}`
     default:
       return apiBaseUrl

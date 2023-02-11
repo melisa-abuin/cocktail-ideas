@@ -7,7 +7,7 @@ export const Description = styled.p`
 `
 
 export const Title = styled.h1`
-  color: #FF0000;
+  color: #ff0000;
   font-size: 48px;
   line-height: 48px;
   margin: 40px 0 20px 0;
