@@ -1,8 +1,10 @@
 import { AppProps } from 'next/app'
 import { Inter } from '@next/font/google'
 import { createGlobalStyle } from 'styled-components'
+import { QueryClient, QueryClientProvider } from 'react-query'
 
 const inter = Inter({ subsets: ['latin'] })
+const queryClient = new QueryClient()
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -16,7 +18,9 @@ function MyApp({ Component, pageProps }: AppProps) {
       <GlobalStyle />
 
       <main className={inter.className}>
-        <Component {...pageProps} />
+        <QueryClientProvider client={queryClient}>
+          <Component {...pageProps} />
+        </QueryClientProvider>
       </main>
     </>
   )
