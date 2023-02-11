@@ -1,9 +1,12 @@
 import { Container, FixedContainer, Title } from './styles'
 import Image from 'next/image'
-import { Row } from '../../section/row'
 import { SearchBox } from '../../common/searchbox'
 
-export const Header = () => {
+type Props = {
+  ingredient: string
+}
+
+export const Header = ({ ingredient }: Props) => {
   return (
     <FixedContainer>
       <Container basis={180}>
@@ -16,7 +19,7 @@ export const Header = () => {
         <Title>Cocktails</Title>
       </Container>
       <Container basis={700}>
-        <SearchBox size="small" />
+        <SearchBox defaultValue={ingredient} size="small" />
       </Container>
     </FixedContainer>
   )
