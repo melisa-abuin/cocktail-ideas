@@ -1,20 +1,12 @@
-import { flow, pipe } from 'fp-ts/function'
+import { pipe } from 'fp-ts/function'
 import * as TE from 'fp-ts/TaskEither'
 import * as E from 'fp-ts/Either'
 import { handleApiError } from '@/src/utils/handleApiError'
 import { apiBaseUrl } from '@/src/constants/api'
 import { cocktails } from '@/src/types/cocktails'
-import * as t from 'io-ts'
-import { failure } from 'io-ts/lib/PathReporter'
+import { decodeWith } from '@/src/utils/decodeWith'
 
-const apiUrl = '/filter.php'
-
-const decodeWith = <A>(decoder: t.Decoder<unknown, A>) =>
-  flow(
-    decoder.decode,
-    E.mapLeft((errors) => new Error(failure(errors).join('\n'))),
-    TE.fromEither
-  )
+const apiUrl = 'filter.php'
 
 export const getCocktailsByIngredient = async (name: string) => {
   const result = await pipe(
