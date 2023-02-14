@@ -3,9 +3,9 @@ import { SearchIcon } from '@/src/assets/svg/searchicon'
 import { ChangeEvent } from 'react'
 
 type Props = {
-  value?: string
   onChange: (value: string) => void
   size?: 'medium' | 'small'
+  value?: string
 }
 
 export const SearchBox = ({ onChange, size = 'medium', value }: Props) => {

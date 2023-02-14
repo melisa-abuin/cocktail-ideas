@@ -24,7 +24,7 @@ describe('SearchBox', () => {
 
     userEvent.type(input, 'some value')
 
-    waitFor(() => {
+    await waitFor(() => {
       expect(onChange).toHaveBeenCalledWith('some value')
     })
   })
