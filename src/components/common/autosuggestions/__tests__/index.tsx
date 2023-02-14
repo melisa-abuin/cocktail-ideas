@@ -1,5 +1,5 @@
 import { AutoSuggestions } from '..'
-import { act, render, screen, waitFor } from '@testing-library/react'
+import { render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { getIngredientsByName } from '@/src/api/getIngredientsByName'
