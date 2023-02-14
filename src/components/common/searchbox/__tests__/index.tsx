@@ -9,9 +9,9 @@ describe('SearchBox', () => {
     expect(screen.getByPlaceholderText('Type ingredient')).toBeInTheDocument()
   })
 
-  it('renders the default value when passed by props', () => {
+  it('renders the value when passed by props', () => {
     const value = 'some value'
-    render(<SearchBox defaultValue={value} onChange={jest.fn()} />)
+    render(<SearchBox value={value} onChange={jest.fn()} />)
 
     expect(screen.getByPlaceholderText('Type ingredient')).toHaveValue(value)
   })
