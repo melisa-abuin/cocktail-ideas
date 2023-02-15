@@ -1,12 +1,11 @@
 import { Container, FixedContainer, Title } from './styles'
 import Image from 'next/image'
-import { SearchBox } from '../../common/searchbox'
+import { AutoSuggestions } from '../../common/autosuggestions'
+import { useRedirectToDashboard } from '@/src/hooks/useRedirectToDashboard'
 
-type Props = {
-  ingredient: string
-}
+export const Header = () => {
+  const redirectToDashboard = useRedirectToDashboard()
 
-export const Header = ({ ingredient }: Props) => {
   return (
     <FixedContainer>
       <Container basis={180}>
@@ -19,7 +18,7 @@ export const Header = ({ ingredient }: Props) => {
         <Title>Cocktails</Title>
       </Container>
       <Container basis={700}>
-        <SearchBox defaultValue={ingredient} size="small" />
+        <AutoSuggestions onSelect={redirectToDashboard} size="small" />
       </Container>
     </FixedContainer>
   )

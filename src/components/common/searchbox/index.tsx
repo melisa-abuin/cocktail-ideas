@@ -1,18 +1,25 @@
 import { Addon, Container, Input } from './styles'
 import { SearchIcon } from '@/src/assets/svg/searchicon'
+import { ChangeEvent } from 'react'
 
 type Props = {
-  defaultValue?: string
+  onChange: (value: string) => void
   size?: 'medium' | 'small'
+  value?: string
 }
 
-export const SearchBox = ({ defaultValue, size = 'medium' }: Props) => {
+export const SearchBox = ({ onChange, size = 'medium', value }: Props) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    onChange(e.target.value)
+  }
+
   return (
     <Container size={size}>
       <Input
-        defaultValue={defaultValue}
         inputSize={size}
+        onChange={handleChange}
         placeholder="Type ingredient"
+        value={value}
       />
       <Addon size={size}>
         <SearchIcon />

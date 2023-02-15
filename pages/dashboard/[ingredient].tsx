@@ -9,7 +9,7 @@ export default function Dashboard() {
 
   return (
     <Column>
-      <Header ingredient={ingredient as string} />
+      <Header />
       <Results ingredient={ingredient as string} />
     </Column>
   )
