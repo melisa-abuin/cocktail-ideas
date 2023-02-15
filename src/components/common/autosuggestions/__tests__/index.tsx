@@ -10,12 +10,17 @@ afterEach(() => {
   jest.resetAllMocks()
 })
 
+type Props = {
+  onSelect: (value: string) => void
+  size?: 'medium' | 'small'
+}
+
 const queryClient = new QueryClient()
 
-const mountRender = (size?: 'medium' | 'small') => {
+const mountRender = ({ onSelect, size }: Props) => {
   return render(
     <QueryClientProvider client={queryClient}>
-      <AutoSuggestions size={size} />
+      <AutoSuggestions onSelect={onSelect} size={size} />
     </QueryClientProvider>
   )
 }
@@ -35,7 +40,7 @@ describe('AutoSuggestions', () => {
       ])
     )
 
-    mountRender()
+    mountRender({ onSelect: jest.fn() })
 
     const input = screen.getByPlaceholderText('Type ingredient')
 
@@ -47,7 +52,7 @@ describe('AutoSuggestions', () => {
   })
 
   it('does not show options when input changes value and it is longer than 1 character', async () => {
-    mountRender()
+    mountRender({ onSelect: jest.fn() })
 
     const input = screen.getByPlaceholderText('Type ingredient')
 

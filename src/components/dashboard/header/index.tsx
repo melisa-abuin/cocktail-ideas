@@ -1,8 +1,11 @@
 import { Container, FixedContainer, Title } from './styles'
 import Image from 'next/image'
 import { AutoSuggestions } from '../../common/autosuggestions'
+import { useRedirectToDashboard } from '@/src/hooks/useRedirectToDashboard'
 
 export const Header = () => {
+  const redirectToDashboard = useRedirectToDashboard()
+
   return (
     <FixedContainer>
       <Container basis={180}>
@@ -15,7 +18,7 @@ export const Header = () => {
         <Title>Cocktails</Title>
       </Container>
       <Container basis={700}>
-        <AutoSuggestions size="small" />
+        <AutoSuggestions onSelect={redirectToDashboard} size="small" />
       </Container>
     </FixedContainer>
   )

@@ -5,10 +5,11 @@ import { Container, Option, Options } from './styles'
 import { getIngredientsByName } from '@/src/api/getIngredientsByName'
 
 type Props = {
+  onSelect: (value: string) => void
   size?: 'medium' | 'small'
 }
 
-export const AutoSuggestions = ({ size }: Props) => {
+export const AutoSuggestions = ({ onSelect, size }: Props) => {
   const [value, setValue] = useState('')
   const [showOptions, setShowOptions] = useState(false)
   const [isSelecting, setIsSelecting] = useState(false)
@@ -35,6 +36,7 @@ export const AutoSuggestions = ({ size }: Props) => {
   const handleSelectOption = (option: string) => {
     setValue(option)
     setShowOptions(false)
+    onSelect(option)
   }
 
   return (
