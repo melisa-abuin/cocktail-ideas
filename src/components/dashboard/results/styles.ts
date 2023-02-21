@@ -10,6 +10,7 @@ export const Grid = styled.div`
   gap: 13px;
   grid-template-columns: 1fr 1fr 1fr;
   grid-auto-rows: 225px;
+  width: 100%;
 `
 
 export const Text = styled.p`
