@@ -3,14 +3,16 @@ import { Text } from '@/src/components/section/text'
 import { Image } from './image'
 import { Loader } from './loader'
 import { ErrorMessage } from './errorMessage'
-import { useCocktails } from '@/src/hooks/useCocktails'
+import { useCocktailsByIngredient } from '@/src/hooks/useCocktailsByIngredient'
 
 type Props = {
   ingredient: string
 }
 
 export const Results = ({ ingredient }: Props) => {
-  const { isFetching, data, error } = useCocktails(ingredient as string)
+  const { isFetching, data, error } = useCocktailsByIngredient(
+    ingredient as string
+  )
 
   if (isFetching) {
     return <Loader />
