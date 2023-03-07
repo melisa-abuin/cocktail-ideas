@@ -10,14 +10,21 @@ export const Container = styled.div<{ size: Size }>`
   width: 100%;
 `
 
+export const Label = styled.p`
+  color: #000000;
+  font-size: 14px;
+  padding-bottom: 8px;
+  text-align: center;
+`
+
 export const Options = styled.div<{ size: Size }>`
   background-color: #ffffff;
-  border-radius: 5px;
-  border: 1px solid #000000;
+  border-radius: 10px;
+  border: 1px solid #787878;
   display: flex;
   flex-direction: column;
   position: absolute;
-  top: ${({ size }) => (size === 'medium' ? `50px` : '32px')};
+  top: ${({ size }) => (size === 'medium' ? `53px` : '32px')};
   width: 100%;
 `
 export const Option = styled.div`

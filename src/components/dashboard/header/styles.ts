@@ -1,7 +1,8 @@
+import { mediaQueries } from '@/src/styles/mediaQueries'
 import styled from 'styled-components'
 import { Row } from '../../section/row'
 
-export const Container = styled.div<{ basis?: number; isClickable: boolean }>`
+export const Container = styled.div<{ basis?: number; isClickable?: boolean }>`
   align-items: center;
   cursor: ${({ isClickable }) => (isClickable ? `pointer` : 'auto')};
   display: flex;
@@ -21,6 +22,11 @@ export const FixedContainer = styled(Row)`
 
 export const Title = styled.h1`
   color: #ff0000;
+  display: none;
   font-size: 24px;
   line-height: 24px;
+
+  ${mediaQueries('md')`
+    display: inline;
+  `};
 `

@@ -1,14 +1,19 @@
 import { useState } from 'react'
 import { SearchBox } from '../searchbox'
-import { Container, Option, Options } from './styles'
+import { Container, Label, Option, Options } from './styles'
 import { useIngredientsByName } from '@/src/hooks/useIngredientsByName'
 
 type Props = {
+  label?: string
   onSelect: (value: string) => void
   size?: 'medium' | 'small'
 }
 
-export const AutoSuggestions = ({ onSelect, size = 'medium' }: Props) => {
+export const AutoSuggestions = ({
+  label,
+  onSelect,
+  size = 'medium',
+}: Props) => {
   const [value, setValue] = useState('')
   const [showOptions, setShowOptions] = useState(false)
   const [isSelecting, setIsSelecting] = useState(false)
@@ -36,23 +41,26 @@ export const AutoSuggestions = ({ onSelect, size = 'medium' }: Props) => {
 
   return (
     <Container onBlur={handleOnBlur} size={size}>
-      <SearchBox onChange={handleChange} value={value} size={size} />
-      {data && showOptions && (
-        <Options
-          onMouseEnter={shouldKeepOptionsOpen}
-          onMouseLeave={shouldCloseOptions}
-          size={size}
-        >
-          {data.map((suggestions) => (
-            <Option
-              key={suggestions.idIngredient}
-              onClick={() => handleSelectOption(suggestions.strIngredient)}
-            >
-              {suggestions.strIngredient}
-            </Option>
-          ))}
-        </Options>
-      )}
+      {!!label && <Label>{label}</Label>}
+      <Container size={size}>
+        <SearchBox onChange={handleChange} value={value} size={size} />
+        {data && showOptions && (
+          <Options
+            onMouseEnter={shouldKeepOptionsOpen}
+            onMouseLeave={shouldCloseOptions}
+            size={size}
+          >
+            {data.map((suggestions) => (
+              <Option
+                key={suggestions.idIngredient}
+                onClick={() => handleSelectOption(suggestions.strIngredient)}
+              >
+                {suggestions.strIngredient}
+              </Option>
+            ))}
+          </Options>
+        )}
+      </Container>
     </Container>
   )
 }

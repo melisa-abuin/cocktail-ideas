@@ -1,4 +1,4 @@
-import { Container, Grid } from './styles'
+import { Container, Grid, TextContainer } from './styles'
 import { Text } from '@/src/components/section/text'
 import { Image } from './image'
 import { Loader } from './loader'
@@ -24,7 +24,9 @@ export const Results = ({ ingredient }: Props) => {
 
   return (
     <Container width={700}>
-      <Text>Cocktails that you can prepare with "{ingredient}":</Text>
+      <TextContainer>
+        <Text>Cocktails that you can prepare with "{ingredient}":</Text>
+      </TextContainer>
       <Grid>
         {data?.map((cocktail) => (
           <Image key={cocktail.idDrink} {...cocktail} />

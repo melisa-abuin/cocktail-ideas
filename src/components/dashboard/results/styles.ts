@@ -1,3 +1,4 @@
+import { mediaQueries } from '@/src/styles/mediaQueries'
 import styled from 'styled-components'
 import { Column } from '../../section/column'
 
@@ -8,14 +9,20 @@ export const Container = styled(Column)`
 export const Grid = styled.div`
   display: grid;
   gap: 13px;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
   grid-auto-rows: 225px;
   width: 100%;
+
+  ${mediaQueries('md')`
+    grid-template-columns: 1fr 1fr 1fr;
+  `};
 `
 
-export const Text = styled.p`
-  color: #000000;
-  font-size: 14px;
-  text-align: start;
+export const TextContainer = styled.div`
+  padding-left: 15px;
   width: 100%;
+
+  ${mediaQueries('md')`
+    padding-left: 0;
+  `};
 `
