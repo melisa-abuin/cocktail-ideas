@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { Row } from '../../section/row'
 
-export const Container = styled.div<{ basis?: number; isClickable: boolean }>`
+export const Container = styled.div<{ basis?: number; isClickable?: boolean }>`
   align-items: center;
   cursor: ${({ isClickable }) => (isClickable ? `pointer` : 'auto')};
   display: flex;

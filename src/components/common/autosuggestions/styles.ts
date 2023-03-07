@@ -10,6 +10,13 @@ export const Container = styled.div<{ size: Size }>`
   width: 100%;
 `
 
+export const Label = styled.p`
+  color: #000000;
+  font-size: 14px;
+  padding-bottom: 8px;
+  text-align: center;
+`
+
 export const Options = styled.div<{ size: Size }>`
   background-color: #ffffff;
   border-radius: 5px;
