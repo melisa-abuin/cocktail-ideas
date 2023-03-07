@@ -42,23 +42,25 @@ export const AutoSuggestions = ({
   return (
     <Container onBlur={handleOnBlur} size={size}>
       {!!label && <Label>{label}</Label>}
-      <SearchBox onChange={handleChange} value={value} size={size} />
-      {data && showOptions && (
-        <Options
-          onMouseEnter={shouldKeepOptionsOpen}
-          onMouseLeave={shouldCloseOptions}
-          size={size}
-        >
-          {data.map((suggestions) => (
-            <Option
-              key={suggestions.idIngredient}
-              onClick={() => handleSelectOption(suggestions.strIngredient)}
-            >
-              {suggestions.strIngredient}
-            </Option>
-          ))}
-        </Options>
-      )}
+      <Container size={size}>
+        <SearchBox onChange={handleChange} value={value} size={size} />
+        {data && showOptions && (
+          <Options
+            onMouseEnter={shouldKeepOptionsOpen}
+            onMouseLeave={shouldCloseOptions}
+            size={size}
+          >
+            {data.map((suggestions) => (
+              <Option
+                key={suggestions.idIngredient}
+                onClick={() => handleSelectOption(suggestions.strIngredient)}
+              >
+                {suggestions.strIngredient}
+              </Option>
+            ))}
+          </Options>
+        )}
+      </Container>
     </Container>
   )
 }
