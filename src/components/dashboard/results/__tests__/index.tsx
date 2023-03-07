@@ -1,9 +1,9 @@
 import { Results } from '..'
 import { render, screen } from '@testing-library/react'
 import { QueryClient, QueryClientProvider } from 'react-query'
-import { useCocktails } from '@/src/hooks/useCocktails'
+import { useCocktailsByIngredient } from '@/src/hooks/useCocktailsByIngredient'
 
-jest.mock('@/src/hooks/useCocktails')
+jest.mock('@/src/hooks/useCocktailsByIngredient')
 
 afterEach(() => {
   jest.resetAllMocks()
@@ -33,11 +33,13 @@ const mountRender = ({ ingredient = 'vodka' }: Partial<Props>) => {
 
 describe('Results', () => {
   it('renders the title correctly', () => {
-    jest.mocked(useCocktails as jest.Mock<any>).mockReturnValueOnce({
-      data: cocktailsMock,
-      isFetching: false,
-      error: null,
-    })
+    jest
+      .mocked(useCocktailsByIngredient as jest.Mock<any>)
+      .mockReturnValueOnce({
+        data: cocktailsMock,
+        isFetching: false,
+        error: null,
+      })
 
     mountRender({ ingredient: 'gin' })
 
@@ -47,11 +49,13 @@ describe('Results', () => {
   })
 
   it('renders a loader if the query is loading', () => {
-    jest.mocked(useCocktails as jest.Mock<any>).mockReturnValueOnce({
-      data: null,
-      isFetching: true,
-      error: null,
-    })
+    jest
+      .mocked(useCocktailsByIngredient as jest.Mock<any>)
+      .mockReturnValueOnce({
+        data: null,
+        isFetching: true,
+        error: null,
+      })
 
     mountRender({ ingredient: 'gin' })
 
@@ -59,11 +63,13 @@ describe('Results', () => {
   })
 
   it('renders an error message if the query failed', () => {
-    jest.mocked(useCocktails as jest.Mock<any>).mockReturnValueOnce({
-      data: null,
-      isFetching: false,
-      error: () => {},
-    })
+    jest
+      .mocked(useCocktailsByIngredient as jest.Mock<any>)
+      .mockReturnValueOnce({
+        data: null,
+        isFetching: false,
+        error: () => {},
+      })
 
     mountRender({ ingredient: 'gin' })
 
@@ -73,11 +79,13 @@ describe('Results', () => {
   })
 
   it('renders the cocktails when the api call is successful', () => {
-    jest.mocked(useCocktails as jest.Mock<any>).mockReturnValueOnce({
-      data: cocktailsMock,
-      isFetching: false,
-      error: null,
-    })
+    jest
+      .mocked(useCocktailsByIngredient as jest.Mock<any>)
+      .mockReturnValueOnce({
+        data: cocktailsMock,
+        isFetching: false,
+        error: null,
+      })
 
     mountRender({ ingredient: 'gin' })
 

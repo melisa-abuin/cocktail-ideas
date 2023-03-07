@@ -2,13 +2,15 @@ import { Container, FixedContainer, Title } from './styles'
 import Image from 'next/image'
 import { AutoSuggestions } from '../../common/autosuggestions'
 import { useRedirectToDashboard } from '@/src/hooks/useRedirectToDashboard'
+import { useRedirectToHome } from './hooks/useRedirectToHome'
 
 export const Header = () => {
   const redirectToDashboard = useRedirectToDashboard()
+  const redirectToHome = useRedirectToHome()
 
   return (
     <FixedContainer>
-      <Container basis={180}>
+      <Container basis={180} isClickable onClick={redirectToHome}>
         <Image
           alt="banner"
           height={42}

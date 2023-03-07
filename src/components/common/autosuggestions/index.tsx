@@ -1,31 +1,26 @@
 import { useState } from 'react'
 import { SearchBox } from '../searchbox'
-import { useQuery } from 'react-query'
 import { Container, Option, Options } from './styles'
-import { getIngredientsByName } from '@/src/api/getIngredientsByName'
+import { useIngredientsByName } from '@/src/hooks/useIngredientsByName'
 
 type Props = {
   onSelect: (value: string) => void
   size?: 'medium' | 'small'
 }
 
-export const AutoSuggestions = ({ onSelect, size }: Props) => {
+export const AutoSuggestions = ({ onSelect, size = 'medium' }: Props) => {
   const [value, setValue] = useState('')
   const [showOptions, setShowOptions] = useState(false)
   const [isSelecting, setIsSelecting] = useState(false)
 
-  const { data, refetch } = useQuery(
-    'ingredients',
-    () => getIngredientsByName(value),
-    {
-      enabled: !!value && value.length > 1,
-    }
-  )
+  const { data } = useIngredientsByName({
+    name: value,
+    enabled: !!value && value.length > 1,
+  })
 
   const handleChange = (value: string) => {
     setShowOptions(true)
     setValue(value)
-    refetch()
   }
 
   const handleOnBlur = () => (isSelecting ? null : setShowOptions(false))
@@ -40,12 +35,13 @@ export const AutoSuggestions = ({ onSelect, size }: Props) => {
   }
 
   return (
-    <Container onBlur={handleOnBlur}>
+    <Container onBlur={handleOnBlur} size={size}>
       <SearchBox onChange={handleChange} value={value} size={size} />
       {data && showOptions && (
         <Options
           onMouseEnter={shouldKeepOptionsOpen}
           onMouseLeave={shouldCloseOptions}
+          size={size}
         >
           {data.map((suggestions) => (
             <Option

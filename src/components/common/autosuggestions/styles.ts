@@ -1,19 +1,23 @@
 import styled from 'styled-components'
 
-export const Container = styled.div`
+type Size = 'medium' | 'small'
+
+export const Container = styled.div<{ size: Size }>`
   display: flex;
   flex-direction: column;
+  max-width: ${({ size }) => (size === 'medium' ? `470px` : '250px')};
   position: relative;
+  width: 100%;
 `
 
-export const Options = styled.div`
+export const Options = styled.div<{ size: Size }>`
   background-color: #ffffff;
-  border: 1px solid #000000;
   border-radius: 5px;
+  border: 1px solid #000000;
   display: flex;
   flex-direction: column;
   position: absolute;
-  top: 32px;
+  top: ${({ size }) => (size === 'medium' ? `50px` : '32px')};
   width: 100%;
 `
 export const Option = styled.div`

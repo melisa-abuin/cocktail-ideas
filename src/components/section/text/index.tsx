@@ -21,7 +21,6 @@ const getTextColor = (type: TextType) => {
 
 export const StyledText = styled.p<{ type: TextType }>`
   color: ${({ type }) => getTextColor(type)};
-  color: #000000;
   font-size: 14px;
   text-align: start;
   width: 100%;

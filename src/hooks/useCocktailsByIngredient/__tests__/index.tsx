@@ -1,5 +1,5 @@
 import { QueryClient, QueryClientProvider } from 'react-query'
-import { useCocktails } from '..'
+import { useCocktailsByIngredient } from '..'
 import { renderHook } from '@testing-library/react-hooks'
 import { ReactNode } from 'react'
 import { getCocktailsByIngredient } from '@/src/api/getCocktailsByIngredient'
@@ -28,15 +28,18 @@ const wrapper = ({ children }: Props) => (
   <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
 )
 
-describe('useCocktails', () => {
+describe('useCocktailsByIngredient', () => {
   it('returns success when the api call is successful', async () => {
     jest
       .mocked(getCocktailsByIngredient)
       .mockReturnValueOnce(Promise.resolve(cocktailsMock))
 
-    const { result, waitFor } = renderHook(() => useCocktails('vodka'), {
-      wrapper,
-    })
+    const { result, waitFor } = renderHook(
+      () => useCocktailsByIngredient('vodka'),
+      {
+        wrapper,
+      }
+    )
 
     await waitFor(() => result.current.isSuccess)
 
@@ -48,9 +51,12 @@ describe('useCocktails', () => {
       .mocked(getCocktailsByIngredient)
       .mockReturnValueOnce(Promise.resolve(null))
 
-    const { result, waitFor } = renderHook(() => useCocktails('vodka'), {
-      wrapper,
-    })
+    const { result, waitFor } = renderHook(
+      () => useCocktailsByIngredient('vodka'),
+      {
+        wrapper,
+      }
+    )
 
     await waitFor(() => result.current.isFetched)
 
