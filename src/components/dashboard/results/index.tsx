@@ -25,7 +25,9 @@ export const Results = ({ ingredient }: Props) => {
   return (
     <Container width={700}>
       <TextContainer>
-        <Text>Cocktails that you can prepare with "{ingredient}":</Text>
+        <Text>
+          Cocktails that you can prepare with <strong>{ingredient}</strong>:
+        </Text>
       </TextContainer>
       <Grid>
         {data?.map((cocktail) => (
