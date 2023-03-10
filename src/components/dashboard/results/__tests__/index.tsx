@@ -43,9 +43,7 @@ describe('Results', () => {
 
     mountRender({ ingredient: 'gin' })
 
-    expect(
-      screen.getByText('Cocktails that you can prepare with "gin":')
-    ).toBeInTheDocument()
+    expect(screen.getByText('gin')).toBeInTheDocument()
   })
 
   it('renders a loader if the query is loading', () => {
