@@ -7,7 +7,7 @@ export const useRedirectToHome = () => {
   return useCallback(
     () =>
       push({
-        pathname: '/home',
+        pathname: '/',
       }),
     [push]
   )
