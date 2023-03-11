@@ -3,6 +3,7 @@ import { render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { getIngredientsByName } from '@/src/api/getIngredientsByName'
+import { mockedIngredients } from '@/src/mocks/ingredients'
 
 jest.mock('@/src/api/getIngredientsByName')
 
@@ -27,18 +28,9 @@ const mountRender = ({ onSelect, size }: Props) => {
 
 describe('AutoSuggestions', () => {
   it('show options when input changes value and it is longer than 1 character', async () => {
-    jest.mocked(getIngredientsByName).mockReturnValueOnce(
-      Promise.resolve([
-        {
-          idIngredient: '312',
-          strABV: null,
-          strAlcohol: 'No',
-          strDescription: 'some description',
-          strIngredient: 'Lime',
-          strType: 'Fruit',
-        },
-      ])
-    )
+    jest
+      .mocked(getIngredientsByName)
+      .mockReturnValueOnce(Promise.resolve(mockedIngredients))
 
     mountRender({ onSelect: jest.fn() })
 

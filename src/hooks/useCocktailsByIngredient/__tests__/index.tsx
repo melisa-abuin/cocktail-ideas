@@ -1,8 +1,9 @@
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { useCocktailsByIngredient } from '..'
-import { renderHook } from '@testing-library/react-hooks'
+import { renderHook, waitFor } from '@testing-library/react'
 import { ReactNode } from 'react'
 import { getCocktailsByIngredient } from '@/src/api/getCocktailsByIngredient'
+import { mockedCocktails } from '@/src/mocks/cocktails'
 
 jest.mock('@/src/api/getCocktailsByIngredient')
 
@@ -10,15 +11,14 @@ afterEach(() => {
   jest.restoreAllMocks()
 })
 
-const cocktailsMock = [
-  {
-    idDrink: '1',
-    strDrink: 'mojito',
-    strDrinkThumb: 'https://drink-image.jpg',
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      cacheTime: 0,
+      retry: false,
+    },
   },
-]
-
-const queryClient = new QueryClient()
+})
 
 type Props = {
   children: ReactNode
@@ -32,18 +32,15 @@ describe('useCocktailsByIngredient', () => {
   it('returns success when the api call is successful', async () => {
     jest
       .mocked(getCocktailsByIngredient)
-      .mockReturnValueOnce(Promise.resolve(cocktailsMock))
+      .mockReturnValueOnce(Promise.resolve(mockedCocktails))
 
-    const { result, waitFor } = renderHook(
-      () => useCocktailsByIngredient('vodka'),
-      {
-        wrapper,
-      }
-    )
+    const { result } = renderHook(() => useCocktailsByIngredient('vodka'), {
+      wrapper,
+    })
 
-    await waitFor(() => result.current.isSuccess)
+    await waitFor(() => expect(result.current.isSuccess).toBe(true))
 
-    expect(result.current.data).toEqual(cocktailsMock)
+    expect(result.current.data).toEqual(mockedCocktails)
   })
 
   it('returns an error when the api call is rejected', async () => {
@@ -51,14 +48,11 @@ describe('useCocktailsByIngredient', () => {
       .mocked(getCocktailsByIngredient)
       .mockReturnValueOnce(Promise.resolve(null))
 
-    const { result, waitFor } = renderHook(
-      () => useCocktailsByIngredient('vodka'),
-      {
-        wrapper,
-      }
-    )
+    const { result } = renderHook(() => useCocktailsByIngredient('vodka'), {
+      wrapper,
+    })
 
-    await waitFor(() => result.current.isFetched)
+    await waitFor(() => expect(result.current.isFetched).toBe(true))
 
     expect(result.current.data).toEqual(null)
   })
