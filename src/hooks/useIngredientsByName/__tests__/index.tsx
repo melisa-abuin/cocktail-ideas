@@ -1,27 +1,24 @@
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { useIngredientsByName } from '..'
-import { renderHook } from '@testing-library/react-hooks'
+import { renderHook, waitFor } from '@testing-library/react'
 import { ReactNode } from 'react'
 import { getIngredientsByName } from '@/src/api/getIngredientsByName'
+import { mockedIngredients } from '@/src/mocks/ingredients'
 
 jest.mock('@/src/api/getIngredientsByName')
 
 afterEach(() => {
-  jest.restoreAllMocks()
+  jest.resetAllMocks()
 })
 
-const ingredientsMock = [
-  {
-    idIngredient: '312',
-    strABV: null,
-    strAlcohol: 'No',
-    strDescription: 'some description',
-    strIngredient: 'Lime',
-    strType: 'Fruit',
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      cacheTime: 0,
+      retry: false,
+    },
   },
-]
-
-const queryClient = new QueryClient()
+})
 
 type Props = {
   children: ReactNode
@@ -35,33 +32,32 @@ describe('useIngredientsByName', () => {
   it('returns success when the api call is successful', async () => {
     jest
       .mocked(getIngredientsByName)
-      .mockReturnValueOnce(Promise.resolve(ingredientsMock))
+      .mockReturnValueOnce(Promise.resolve(mockedIngredients))
 
-    const { result, waitFor } = renderHook(
+    const { result } = renderHook(
       () => useIngredientsByName({ name: 'vodka', enabled: true }),
       {
         wrapper,
       }
     )
 
-    await waitFor(() => result.current.isSuccess)
+    await waitFor(() => expect(result.current.isSuccess).toBe(true))
 
-    expect(result.current.data).toEqual(ingredientsMock)
+    expect(result.current.data).toEqual(mockedIngredients)
   })
 
   it('returns an error when the api call is rejected', async () => {
-    jest.mocked(getIngredientsByName).mockReturnValueOnce(Promise.resolve(null))
+    jest.mocked(getIngredientsByName).mockReturnValueOnce(Promise.reject())
 
-    const { result, waitFor } = renderHook(
+    const { result } = renderHook(
       () => useIngredientsByName({ name: 'vodka', enabled: true }),
       {
         wrapper,
       }
     )
+    await waitFor(() => expect(result.current.isSuccess).toBe(false))
 
-    await waitFor(() => result.current.isFetched)
-
-    expect(result.current.data).toEqual(null)
+    expect(result.current.data).toEqual(undefined)
   })
 
   it('does not call the api if it is not enabled', async () => {
@@ -74,6 +70,6 @@ describe('useIngredientsByName', () => {
       }
     )
 
-    expect(result.current.isFetched).toEqual(false)
+    await waitFor(() => expect(result.current.isFetched).toBe(false))
   })
 })

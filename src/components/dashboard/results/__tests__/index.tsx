@@ -2,6 +2,7 @@ import { Results } from '..'
 import { render, screen } from '@testing-library/react'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { useCocktailsByIngredient } from '@/src/hooks/useCocktailsByIngredient'
+import { mockedCocktails } from '@/src/mocks/cocktails'
 
 jest.mock('@/src/hooks/useCocktailsByIngredient')
 
@@ -12,14 +13,6 @@ afterEach(() => {
 type Props = {
   ingredient: string
 }
-
-const cocktailsMock = [
-  {
-    idDrink: '1',
-    strDrink: 'mojito',
-    strDrinkThumb: 'https://drink-image.jpg',
-  },
-]
 
 const queryClient = new QueryClient()
 
@@ -36,7 +29,7 @@ describe('Results', () => {
     jest
       .mocked(useCocktailsByIngredient as jest.Mock<any>)
       .mockReturnValueOnce({
-        data: cocktailsMock,
+        data: mockedCocktails,
         isFetching: false,
         error: null,
       })
@@ -80,13 +73,13 @@ describe('Results', () => {
     jest
       .mocked(useCocktailsByIngredient as jest.Mock<any>)
       .mockReturnValueOnce({
-        data: cocktailsMock,
+        data: mockedCocktails,
         isFetching: false,
         error: null,
       })
 
     mountRender({ ingredient: 'gin' })
 
-    expect(screen.getByText('mojito')).toBeInTheDocument()
+    expect(screen.getByText('drink name')).toBeInTheDocument()
   })
 })
