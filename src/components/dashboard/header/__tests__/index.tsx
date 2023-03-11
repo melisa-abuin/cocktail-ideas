@@ -3,6 +3,7 @@ import { render, screen } from '@testing-library/react'
 import { QueryClient, QueryClientProvider } from 'react-query'
 
 jest.mock('@/src/hooks/useRedirectToDashboard')
+jest.mock('../hooks/useRedirectToHome')
 
 const queryClient = new QueryClient()
 
