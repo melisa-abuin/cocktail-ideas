@@ -12,3 +12,5 @@ jobs:
           node-version: 16.x
       - run: yarn install
       - run: yarn test
+      - run: yarn typecheck
+      - run: yarn lint
