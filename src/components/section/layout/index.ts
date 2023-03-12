@@ -4,6 +4,7 @@ import styled from 'styled-components'
 export const Layout = styled.div`
   box-sizing: border-box;
   height: 100vh;
+  overflow: hidden;
   padding: 0 20px 0 20px;
   width: 100vw;
 

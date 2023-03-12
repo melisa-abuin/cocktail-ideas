@@ -1,4 +1,5 @@
 import { getIngredientsByName } from '..'
+import { mockedIngredients } from '@/src/mocks/ingredients'
 
 afterEach(() => {
   jest.restoreAllMocks()
@@ -6,17 +7,6 @@ afterEach(() => {
 
 describe('getIngredientsByName', () => {
   it('returns the ingredients object when api call is successful', async () => {
-    const mockedIngredients = [
-      {
-        idIngredient: '312',
-        strABV: null,
-        strAlcohol: 'No',
-        strDescription: 'some description',
-        strIngredient: 'Lime',
-        strType: 'Fruit',
-      },
-    ]
-
     global.fetch = jest.fn(() =>
       Promise.resolve({
         json: () => Promise.resolve({ ingredients: mockedIngredients }),
