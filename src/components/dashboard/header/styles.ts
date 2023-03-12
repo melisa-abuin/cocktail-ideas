@@ -2,12 +2,16 @@ import { mediaQueries } from '@/src/styles/mediaQueries'
 import styled from 'styled-components'
 import { Row } from '../../section/row'
 
-export const Container = styled.div<{ basis?: number; isClickable?: boolean }>`
+export const Container = styled.div<{ pl?: number; isClickable?: boolean }>`
   align-items: center;
   cursor: ${({ isClickable }) => (isClickable ? `pointer` : 'auto')};
   display: flex;
-  flex-basis: ${({ basis }) => (basis ? `${basis}px` : 'auto')};
   flex-direction: row;
+  padding-left: 10px;
+
+  ${mediaQueries('md')`
+    padding-left: 25px;
+  `};
 `
 
 export const FixedContainer = styled(Row)`

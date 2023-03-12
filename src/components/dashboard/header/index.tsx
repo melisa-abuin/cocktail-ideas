@@ -10,7 +10,7 @@ export const Header = () => {
 
   return (
     <FixedContainer>
-      <Container basis={180} isClickable onClick={redirectToHome}>
+      <Container isClickable onClick={redirectToHome}>
         <Image
           alt="banner"
           height={42}
@@ -19,7 +19,7 @@ export const Header = () => {
         />
         <Title>Cocktails</Title>
       </Container>
-      <Container basis={700}>
+      <Container>
         <AutoSuggestions onSelect={redirectToDashboard} size="small" />
       </Container>
     </FixedContainer>
