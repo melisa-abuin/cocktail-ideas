@@ -1,20 +1,26 @@
+import { mediaQueries } from '@/src/styles/mediaQueries'
 import styled from 'styled-components'
 
 export const Container = styled.div`
   align-items: center;
   background-color: #000000;
-  border-radius: 10px;
+  border-radius: 3px;
   cursor: pointer;
   display: flex;
   justify-content: center;
   overflow: hidden;
   position: relative;
+
+  ${mediaQueries('md')`
+    border-radius: 10px;
+  `};
 `
 
 export const StyledImage = styled.img`
   height: 100%;
-  position: absolute;
+  object-fit: cover;
   opacity: 0.5;
+  position: absolute;
   width: 100%;
 `
 
