@@ -1,6 +1,6 @@
 # cocktail-ideas
 
-application made using React & Typescript that suggests cocktails that can be prepared with any of the ingredients you have at home
+This is an application made using React & Typescript that suggests cocktails that can be prepared with any of the ingredients you have at home
 
 ## Tech stack
 
@@ -14,3 +14,34 @@ application made using React & Typescript that suggests cocktails that can be pr
 ## Design
 
 The design of the application can be found in this [Figma](https://www.figma.com/file/UxnSBgh1EPTSzatWulHwdj/Cocktail-ideas?node-id=1%3A8&t=GUa34Vpi0qUhpPzQ-0) project
+
+## Available commands
+
+For running the server:
+
+```bash
+yarn dev
+```
+
+For statically build the app run:
+
+```bash
+yarn build
+yarn start
+```
+
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+## Testing
+
+For running the unit tests you can run
+
+```bash
+yarn test
+```
+
+And finally for checking the types you can run
+
+```bash
+yarn typecheck
+```
