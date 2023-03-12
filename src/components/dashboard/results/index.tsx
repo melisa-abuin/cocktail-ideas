@@ -1,9 +1,9 @@
 import { Container, Grid, TextContainer } from './styles'
 import { Text } from '@/src/components/section/text'
-import { Image } from './image'
-import { Loader } from './loader'
-import { ErrorMessage } from './errorMessage'
+import { Loader } from './components/loader'
+import { ErrorMessage } from './components/errorMessage'
 import { useCocktailsByIngredient } from '@/src/hooks/useCocktailsByIngredient'
+import { Cocktail } from './components/cocktail'
 
 type Props = {
   ingredient: string
@@ -31,7 +31,7 @@ export const Results = ({ ingredient }: Props) => {
       </TextContainer>
       <Grid>
         {data?.map((cocktail) => (
-          <Image key={cocktail.idDrink} {...cocktail} />
+          <Cocktail key={cocktail.idDrink} {...cocktail} />
         ))}
       </Grid>
     </Container>
