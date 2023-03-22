@@ -1,6 +1,6 @@
 import * as t from 'io-ts'
 
-const optional = <T extends t.Mixed>(type: T) => t.union([type, t.null])
+const optional = <T extends t.Mixed>(type: T) => t.union([type, t.undefined])
 
 export const cocktail = t.type({
   idDrink: t.string,
