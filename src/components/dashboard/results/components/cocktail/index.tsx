@@ -22,7 +22,11 @@ export const Cocktail = ({
         strDrinkThumb={strDrinkThumb}
       />
 
-      <Modal isOpen={isModalOpen} closeModal={handleCloseModal} />
+      <Modal
+        idDrink={idDrink}
+        isOpen={isModalOpen}
+        closeModal={handleCloseModal}
+      />
     </>
   )
 }
