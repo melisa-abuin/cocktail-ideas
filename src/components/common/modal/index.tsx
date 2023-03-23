@@ -1,6 +1,5 @@
 import { CloseIcon } from '@/src/assets/svg/closeIcon'
 import { useCocktailById } from '@/src/hooks/useCocktailById'
-import { Cocktail } from '@/src/types/cocktails'
 import { IngredientsList } from './ingredientsList'
 import {
   Body,
