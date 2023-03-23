@@ -42,6 +42,7 @@ export const AutoSuggestions = ({
   return (
     <Container onBlur={handleOnBlur} size={size}>
       {!!label && <Label>{label}</Label>}
+
       <Container size={size}>
         <SearchBox onChange={handleChange} value={value} size={size} />
         {data && showOptions && (

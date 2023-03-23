@@ -1,27 +1,27 @@
 import { CloseIcon } from '@/src/assets/svg/closeIcon'
-import { useCocktailById } from '@/src/hooks/useCocktailById'
-import { IngredientsList } from './ingredientsList'
+import { PropsWithChildren } from 'react'
 import {
   Body,
   Header,
   IconContainer,
   ModalContainer,
   PageBackground,
-  PreparationDescription,
-  SectionTitle,
   Title,
 } from './styles'
 
 type Props = {
   closeModal: () => void
-  idDrink: string
   isOpen: boolean
+  title: string
 }
 
-export const Modal = ({ closeModal, idDrink, isOpen }: Props) => {
-  const { data } = useCocktailById(idDrink)
-  console.log(data)
-  if (!isOpen || !data) {
+export const Modal = ({
+  children,
+  closeModal,
+  isOpen,
+  title,
+}: PropsWithChildren<Props>) => {
+  if (!isOpen) {
     return null
   }
 
@@ -29,23 +29,14 @@ export const Modal = ({ closeModal, idDrink, isOpen }: Props) => {
     <PageBackground>
       <ModalContainer>
         <Header>
-          <Title>{data.strDrink}</Title>
+          <Title>{title}</Title>
 
           <IconContainer onClick={closeModal}>
             <CloseIcon />
           </IconContainer>
         </Header>
 
-        <Body>
-          <SectionTitle>Ingredients</SectionTitle>
-
-          <IngredientsList {...data} />
-          <SectionTitle>Preparation</SectionTitle>
-
-          <PreparationDescription>
-            {data.strInstructions}
-          </PreparationDescription>
-        </Body>
+        <Body>{children}</Body>
       </ModalContainer>
     </PageBackground>
   )

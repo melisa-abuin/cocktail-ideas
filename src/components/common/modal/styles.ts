@@ -44,16 +44,6 @@ export const PageBackground = styled.div`
   z-index: 10;
 `
 
-export const PreparationDescription = styled.p`
-  font-size: 14px;
-  font-weight: 400;
-`
-
-export const SectionTitle = styled.label`
-  font-size: 16px;
-  font-weight: 600;
-`
-
 export const Title = styled.label`
   color: #ff0000;
   font-size: 24px;
