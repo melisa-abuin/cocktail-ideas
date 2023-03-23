@@ -14,7 +14,7 @@ export const getCocktailById = async (id: string) => {
     TE.chain((response) => TE.tryCatch(() => response.json(), handleApiError)),
     TE.chain((response) => decodeWith(cocktails)(response.drinks))
   )()
-  console.log(result)
+
   if (E.isRight(result)) {
     return result.right
   }
