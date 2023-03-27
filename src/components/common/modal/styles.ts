@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { mediaQueries } from '@/src/styles/mediaQueries'
 
 export const Body = styled.div`
   display: flex;
@@ -22,11 +23,20 @@ export const IconContainer = styled.div`
 
 export const ModalContainer = styled.div`
   background-color: #ffffff;
-  border-radius: 5px;
-  max-width: 700px;
+  border-radius: 0;
+  box-sizing: border-box;
+  height: 100%;
+  max-width: unset;
   padding: 32px 40px;
   width: 100%;
   z-index: 11;
+
+  ${mediaQueries('md')`
+    border-radius: 5px;
+    height: auto;
+    max-width: 700px;
+
+  `};
 `
 
 export const PageBackground = styled.div`
