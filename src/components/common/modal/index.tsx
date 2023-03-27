@@ -9,7 +9,7 @@ import {
   Title,
 } from './styles'
 
-type Props = {
+interface Props {
   closeModal: () => void
   isOpen: boolean
   title: string

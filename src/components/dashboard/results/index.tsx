@@ -5,7 +5,7 @@ import { useCocktailsByIngredient } from '@/src/hooks/useCocktailsByIngredient'
 import { Cocktail } from './components/cocktail'
 import { ErrorMessage } from '../../common/errorMessage'
 
-type Props = {
+interface Props {
   ingredient: string
 }
 

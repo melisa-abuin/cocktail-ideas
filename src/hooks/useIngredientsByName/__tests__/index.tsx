@@ -1,7 +1,7 @@
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { useIngredientsByName } from '..'
 import { renderHook, waitFor } from '@testing-library/react'
-import { ReactNode } from 'react'
+import { PropsWithChildren } from 'react'
 import { getIngredientsByName } from '@/src/api/getIngredientsByName'
 import { mockedIngredients } from '@/src/mocks/ingredients'
 
@@ -20,11 +20,7 @@ const queryClient = new QueryClient({
   },
 })
 
-type Props = {
-  children: ReactNode
-}
-
-const wrapper = ({ children }: Props) => (
+const wrapper = ({ children }: PropsWithChildren) => (
   <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
 )
 

@@ -1,7 +1,7 @@
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { useCocktailsByIngredient } from '..'
 import { renderHook, waitFor } from '@testing-library/react'
-import { ReactNode } from 'react'
+import { PropsWithChildren } from 'react'
 import { getCocktailsByIngredient } from '@/src/api/getCocktailsByIngredient'
 import { mockedCocktails } from '@/src/mocks/cocktails'
 
@@ -20,18 +20,14 @@ const queryClient = new QueryClient({
   },
 })
 
-type Props = {
-  children: ReactNode
-}
-
-const wrapper = ({ children }: Props) => (
+const wrapper = ({ children }: PropsWithChildren) => (
   <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
 )
 
 describe('useCocktailsByIngredient', () => {
   it('returns success when the api call is successful', async () => {
     jest
-      .mocked(getCocktailsByIngredient)
+      .mocked(getCocktailsByIngredient as jest.Mock)
       .mockReturnValueOnce(Promise.resolve(mockedCocktails))
 
     const { result } = renderHook(() => useCocktailsByIngredient('vodka'), {

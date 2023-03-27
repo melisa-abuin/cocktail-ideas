@@ -2,7 +2,7 @@ import { Addon, Container, Input } from './styles'
 import { SearchIcon } from '@/src/assets/svg/searchicon'
 import { ChangeEvent } from 'react'
 
-type Props = {
+interface Props {
   onChange: (value: string) => void
   size?: 'medium' | 'small'
   value?: string

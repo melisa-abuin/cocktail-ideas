@@ -3,7 +3,7 @@ import { SearchBox } from '../searchbox'
 import { Container, Label, Option, Options } from './styles'
 import { useIngredientsByName } from '@/src/hooks/useIngredientsByName'
 
-type Props = {
+interface Props {
   label?: string
   onSelect: (value: string) => void
   size?: 'medium' | 'small'
