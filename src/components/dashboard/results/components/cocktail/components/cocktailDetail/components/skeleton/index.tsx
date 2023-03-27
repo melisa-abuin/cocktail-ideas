@@ -5,9 +5,9 @@ export const Skeleton = () => (
   <Container>
     <Image
       alt="skeleton-loader"
-      height={200}
+      fill
+      sizes="100vw"
       src="/loading-skeleton.gif"
-      width={325}
     />
   </Container>
 )
