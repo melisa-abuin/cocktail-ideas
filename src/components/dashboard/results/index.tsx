@@ -1,9 +1,9 @@
 import { Container, Grid, TextContainer } from './styles'
 import { Text } from '@/src/components/section/text'
 import { Loader } from './components/loader'
-import { ErrorMessage } from './components/errorMessage'
 import { useCocktailsByIngredient } from '@/src/hooks/useCocktailsByIngredient'
 import { Cocktail } from './components/cocktail'
+import { ErrorMessage } from '../../common/errorMessage'
 
 type Props = {
   ingredient: string
@@ -29,6 +29,7 @@ export const Results = ({ ingredient }: Props) => {
           Cocktails that you can prepare with <strong>{ingredient}</strong>:
         </Text>
       </TextContainer>
+
       <Grid>
         {data?.map((cocktail) => (
           <Cocktail key={cocktail.idDrink} {...cocktail} />

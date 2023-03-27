@@ -1,7 +1,7 @@
 import { Image } from './components/image'
 import { Cocktail as CocktailType } from '@/src/types/cocktails'
-import { Modal } from '@/src/components/common/modal'
 import { useState } from 'react'
+import { CocktailDetail } from './components/cocktailDetail'
 
 export const Cocktail = ({
   idDrink,
@@ -22,11 +22,13 @@ export const Cocktail = ({
         strDrinkThumb={strDrinkThumb}
       />
 
-      <Modal
-        idDrink={idDrink}
-        isOpen={isModalOpen}
-        closeModal={handleCloseModal}
-      />
+      {isModalOpen && (
+        <CocktailDetail
+          idDrink={idDrink}
+          isModalOpen={isModalOpen}
+          closeModal={handleCloseModal}
+        />
+      )}
     </>
   )
 }
