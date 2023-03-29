@@ -16,6 +16,7 @@ export default function Dashboard() {
 
       <Column>
         <Header />
+
         <Results ingredient={ingredient as string} />
       </Column>
     </>

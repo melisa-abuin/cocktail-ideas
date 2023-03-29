@@ -4,6 +4,7 @@ import userEvent from '@testing-library/user-event'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { getIngredientsByName } from '@/src/api/getIngredientsByName'
 import { mockedIngredients } from '@/src/mocks/ingredients'
+import { ComponentProps } from 'react'
 
 jest.mock('@/src/api/getIngredientsByName')
 
@@ -11,14 +12,12 @@ afterEach(() => {
   jest.resetAllMocks()
 })
 
-type Props = {
-  onSelect: (value: string) => void
-  size?: 'medium' | 'small'
-}
-
 const queryClient = new QueryClient()
 
-const mountRender = ({ onSelect, size }: Props) => {
+const mountRender = ({
+  onSelect,
+  size,
+}: ComponentProps<typeof AutoSuggestions>) => {
   return render(
     <QueryClientProvider client={queryClient}>
       <AutoSuggestions onSelect={onSelect} size={size} />

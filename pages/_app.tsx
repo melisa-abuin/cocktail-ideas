@@ -5,7 +5,14 @@ import { QueryClient, QueryClientProvider } from 'react-query'
 import Head from 'next/head'
 
 const inter = Inter({ subsets: ['latin'] })
-const queryClient = new QueryClient()
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+    },
+  },
+})
 
 const GlobalStyle = createGlobalStyle`
   body {

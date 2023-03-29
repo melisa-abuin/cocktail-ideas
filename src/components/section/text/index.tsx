@@ -3,7 +3,7 @@ import { ReactNode } from 'react'
 
 type TextType = 'error' | 'normal' | undefined
 
-type Props = {
+interface Props {
   children: ReactNode
   type?: TextType
 }

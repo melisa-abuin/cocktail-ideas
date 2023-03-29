@@ -1,6 +1,6 @@
 import { apiBaseUrl } from '@/src/constants/api'
 
-type Props = {
+interface Props {
   entity: 'cocktail' | 'ingredient'
   param: string
 }

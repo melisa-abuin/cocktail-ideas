@@ -3,7 +3,7 @@ import { SearchBox } from '../searchbox'
 import { Container, Label, Option, Options } from './styles'
 import { useIngredientsByName } from '@/src/hooks/useIngredientsByName'
 
-type Props = {
+interface Props {
   label?: string
   onSelect: (value: string) => void
   size?: 'medium' | 'small'
@@ -42,6 +42,7 @@ export const AutoSuggestions = ({
   return (
     <Container onBlur={handleOnBlur} size={size}>
       {!!label && <Label>{label}</Label>}
+
       <Container size={size}>
         <SearchBox onChange={handleChange} value={value} size={size} />
         {data && showOptions && (

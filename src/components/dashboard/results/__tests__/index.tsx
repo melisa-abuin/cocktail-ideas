@@ -3,6 +3,7 @@ import { render, screen } from '@testing-library/react'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { useCocktailsByIngredient } from '@/src/hooks/useCocktailsByIngredient'
 import { mockedCocktails } from '@/src/mocks/cocktails'
+import { ComponentProps } from 'react'
 
 jest.mock('@/src/hooks/useCocktailsByIngredient')
 
@@ -10,13 +11,11 @@ afterEach(() => {
   jest.resetAllMocks()
 })
 
-type Props = {
-  ingredient: string
-}
-
 const queryClient = new QueryClient()
 
-const mountRender = ({ ingredient = 'vodka' }: Partial<Props>) => {
+const mountRender = (
+  { ingredient }: ComponentProps<typeof Results> = { ingredient: 'vodka' }
+) => {
   return render(
     <QueryClientProvider client={queryClient}>
       <Results ingredient={ingredient} />
@@ -48,7 +47,7 @@ describe('Results', () => {
         error: null,
       })
 
-    mountRender({ ingredient: 'gin' })
+    mountRender()
 
     expect(screen.getByAltText('loader')).toBeInTheDocument()
   })
@@ -62,7 +61,7 @@ describe('Results', () => {
         error: () => {},
       })
 
-    mountRender({ ingredient: 'gin' })
+    mountRender()
 
     expect(
       screen.getByText('Ups, something went wrong! Try again please.')
