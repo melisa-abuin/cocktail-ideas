@@ -15,4 +15,8 @@ export const mockedCocktail = {
   idDrink: '1',
   strDrink: 'drink name',
   strDrinkThumb: 'https://drink-image.jpg',
+  strIngredient1: 'sugar',
+  strIngredient2: 'lime',
+  strMeasure1: '2',
+  strMeasure2: '1',
 }
